@@ -11,7 +11,16 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({ email, password })
-		})
+		}).then(response => {
+			if (response.ok) {
+				return response.json();
+			}
+			throw new Error('Login failed');
+		}).then(data => {
+			console.log(data);
+		}).catch(error => {
+			console.error(error);
+		});
 	};
 
 </script>
